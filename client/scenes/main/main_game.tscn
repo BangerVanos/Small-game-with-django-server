@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://e2u0vk4wo64e"]
+
+[ext_resource type="FontFile" uid="uid://dxf6gk0qmwf2x" path="res://assets/fonts/retro_gaming.ttf" id="1_jeav5"]
+[ext_resource type="Script" path="res://scenes/main/main_script.gd" id="1_lk5j5"]
+[ext_resource type="Script" path="res://scripts/username_request.gd" id="2_ni0uo"]
+[ext_resource type="Script" path="res://scripts/refresh_request.gd" id="4_hvg80"]
+[ext_resource type="Script" path="res://scripts/balance_request.gd" id="5_4d4ye"]
+
+[node name="MainGame" type="Node" node_paths=PackedStringArray("username_label", "balance_label", "username_request", "balance_request", "refresh_request")]
+script = ExtResource("1_lk5j5")
+username_label = NodePath("ClickerButtons/UsernameLabel")
+balance_label = NodePath("ClickerButtons/BalanceLabel")
+username_request = NodePath("UsernameRequest")
+balance_request = NodePath("BalanceRequest")
+refresh_request = NodePath("RefreshRequest")
+
+[node name="ClickerButtons" type="CanvasLayer" parent="."]
+
+[node name="BackGround" type="ColorRect" parent="ClickerButtons"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.313726, 0.576471, 0.658824, 1)
+
+[node name="UsernameLabel" type="Label" parent="ClickerButtons"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -227.0
+offset_top = 20.0
+offset_right = 227.0
+offset_bottom = 88.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_jeav5")
+theme_override_font_sizes/font_size = 51
+text = "Hello, Anon!"
+horizontal_alignment = 1
+
+[node name="BalanceLabel" type="Label" parent="ClickerButtons"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -314.5
+offset_top = 100.0
+offset_right = 314.5
+offset_bottom = 168.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_jeav5")
+theme_override_font_sizes/font_size = 51
+text = "Your balance is: 0.0"
+
+[node name="BalanceButtons" type="VBoxContainer" parent="ClickerButtons"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -33.0
+offset_right = 106.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BalanceAdd" type="Button" parent="ClickerButtons/BalanceButtons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_jeav5")
+theme_override_font_sizes/font_size = 32
+text = "Add 100 to balance"
+
+[node name="BalanceSubtract" type="Button" parent="ClickerButtons/BalanceButtons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_jeav5")
+theme_override_font_sizes/font_size = 32
+text = "Subtract 100 from balance"
+
+[node name="UsernameRequest" type="HTTPRequest" parent="."]
+script = ExtResource("2_ni0uo")
+
+[node name="RefreshRequest" type="HTTPRequest" parent="."]
+script = ExtResource("4_hvg80")
+
+[node name="BalanceRequest" type="HTTPRequest" parent="."]
+script = ExtResource("5_4d4ye")
+
+[connection signal="pressed" from="ClickerButtons/BalanceButtons/BalanceAdd" to="." method="_on_balance_add_pressed"]
+[connection signal="pressed" from="ClickerButtons/BalanceButtons/BalanceSubtract" to="." method="_on_balance_subtract_pressed"]
+[connection signal="request_completed" from="UsernameRequest" to="." method="_on_username_request_request_completed"]
+[connection signal="request_completed" from="RefreshRequest" to="RefreshRequest" method="_on_request_completed"]
+[connection signal="request_completed" from="BalanceRequest" to="." method="_on_balance_request_request_completed"]

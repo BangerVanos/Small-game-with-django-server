@@ -1,0 +1,104 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxfuhmaxnyoyg"]
+
+[ext_resource type="FontFile" uid="uid://dxf6gk0qmwf2x" path="res://assets/fonts/retro_gaming.ttf" id="1_l1jtf"]
+
+[node name="SignUpPage" type="Node"]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="LoginPageCanvas" type="CanvasLayer" parent="."]
+
+[node name="LoginPageControl" type="Control" parent="LoginPageCanvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BackGround" type="ColorRect" parent="LoginPageCanvas/LoginPageControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.411765, 0.560784, 0.807843, 1)
+
+[node name="FieldsContainer" type="VBoxContainer" parent="LoginPageCanvas/LoginPageControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -457.5
+offset_top = -219.0
+offset_right = 457.5
+offset_bottom = 219.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(457, 219)
+
+[node name="GameName" type="Label" parent="LoginPageCanvas/LoginPageControl/FieldsContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_l1jtf")
+theme_override_font_sizes/font_size = 45
+text = "Register"
+horizontal_alignment = 1
+
+[node name="UsernameField" type="LineEdit" parent="LoginPageCanvas/LoginPageControl/FieldsContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_l1jtf")
+theme_override_font_sizes/font_size = 48
+placeholder_text = "Enter your username here..."
+
+[node name="EmailField" type="LineEdit" parent="LoginPageCanvas/LoginPageControl/FieldsContainer"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_l1jtf")
+theme_override_font_sizes/font_size = 48
+placeholder_text = "Enter your email here..."
+secret = true
+
+[node name="PasswordField" type="LineEdit" parent="LoginPageCanvas/LoginPageControl/FieldsContainer"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_l1jtf")
+theme_override_font_sizes/font_size = 48
+placeholder_text = "Enter your password here..."
+secret = true
+
+[node name="RepeatPasswordField" type="LineEdit" parent="LoginPageCanvas/LoginPageControl/FieldsContainer"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_l1jtf")
+theme_override_font_sizes/font_size = 48
+placeholder_text = "Repeat your password here..."
+secret = true
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="LoginPageCanvas/LoginPageControl/FieldsContainer"]
+layout_mode = 2
+
+[node name="SignUp" type="Button" parent="LoginPageCanvas/LoginPageControl/FieldsContainer/ButtonsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l1jtf")
+theme_override_font_sizes/font_size = 54
+text = "Sign up"
+
+[node name="Back" type="Button" parent="LoginPageCanvas/LoginPageControl/FieldsContainer/ButtonsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l1jtf")
+theme_override_font_sizes/font_size = 54
+text = "Back"
